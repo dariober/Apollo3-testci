@@ -17,6 +17,8 @@ import React, { useState } from 'react'
 
 import { InMemoryFileDriver } from '../BackendDrivers'
 import { ApolloSessionModel } from '../session'
+import { isElectron } from '@jbrowse/core/util'
+import { storeBlobLocation } from '@jbrowse/core/util/tracks'
 
 interface OpenLocalFileProps {
   session: ApolloSessionModel
@@ -52,6 +54,10 @@ export function OpenLocalFile({ session, handleClose }: OpenLocalFileProps) {
   const [errorMessage, setErrorMessage] = useState('')
   const [submitted, setSubmitted] = useState(false)
   const theme = useTheme()
+
+  // we need to ensure we're running on electron to load in this node package
+// eslint-disable-next-line @typescript-eslint/no-var-requires, @typescript-eslint/no-empty-function
+const exec = isElectron ? require('child_process').exec : () => {}
 
   async function handleChangeFile(e: React.ChangeEvent<HTMLInputElement>) {
     const selectedFile = e.target.files?.item(0)
@@ -146,9 +152,10 @@ export function OpenLocalFile({ session, handleClose }: OpenLocalFileProps) {
           assemblyId,
           features: sequenceAdapterFeatures,
         },
-        metadata: { apollo: true },
+        metadata: { apollo: true, file: file.name },
       },
     }
+    console.log(`Filename: ${file.name}`)
 
     // Save assembly into session
     await (addSessionAssembly || addAssembly)(assemblyConfig)

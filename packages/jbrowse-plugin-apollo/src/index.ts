@@ -8,7 +8,11 @@ import {
 } from '@jbrowse/core/pluggableElementTypes'
 import Plugin from '@jbrowse/core/Plugin'
 import PluginManager from '@jbrowse/core/PluginManager'
-import { AbstractSessionModel, isAbstractMenuManager } from '@jbrowse/core/util'
+import {
+  AbstractSessionModel,
+  isAbstractMenuManager,
+  isElectron,
+} from '@jbrowse/core/util'
 import { changeRegistry } from 'apollo-common'
 import {
   CoreValidation,
@@ -44,6 +48,7 @@ import {
   stateModelFactory as SixFrameFeatureDisplayStateModelFactory,
   configSchemaFactory as sixFrameFeatureDisplayConfigSchemaFactory,
 } from './SixFrameFeatureDisplay'
+import { DesktopFileDriver } from './BackendDrivers/DesktopFileDriver'
 
 Object.entries(changes).forEach(([changeName, change]) => {
   changeRegistry.registerChange(changeName, change)
@@ -138,6 +143,15 @@ export default class ApolloPlugin extends Plugin {
       'Core-extendSession',
       extendSession.bind(this, pluginManager),
     )
+
+      console.log('indeksi ts')
+      console.log(`isElectron: ${isElectron}`)
+      // MITEN TAMAN SAA TEHTYA!!!!
+    // this method "isElectron" is very important for developing a desktop plugin
+    if (isElectron) {
+      console.log(` ON isElectron: ${isElectron}`)
+      // OpenLocalFile(pluginManager)
+    }
   }
 
   configure(pluginManager: PluginManager) {

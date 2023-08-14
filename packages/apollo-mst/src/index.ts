@@ -108,6 +108,7 @@ export const ApolloAssembly = types
       types.enumeration('backendDriverType', [
         'CollaborationServerDriver',
         'InMemoryFileDriver',
+        'DesktopFileDriver',
       ]),
       'CollaborationServerDriver',
     ),
