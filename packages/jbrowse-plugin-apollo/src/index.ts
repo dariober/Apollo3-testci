@@ -143,15 +143,6 @@ export default class ApolloPlugin extends Plugin {
       'Core-extendSession',
       extendSession.bind(this, pluginManager),
     )
-
-      console.log('indeksi ts')
-      console.log(`isElectron: ${isElectron}`)
-      // MITEN TAMAN SAA TEHTYA!!!!
-    // this method "isElectron" is very important for developing a desktop plugin
-    if (isElectron) {
-      console.log(` ON isElectron: ${isElectron}`)
-      // OpenLocalFile(pluginManager)
-    }
   }
 
   configure(pluginManager: PluginManager) {

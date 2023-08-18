@@ -55,10 +55,6 @@ export function OpenLocalFile({ session, handleClose }: OpenLocalFileProps) {
   const [submitted, setSubmitted] = useState(false)
   const theme = useTheme()
 
-  // we need to ensure we're running on electron to load in this node package
-// eslint-disable-next-line @typescript-eslint/no-var-requires, @typescript-eslint/no-empty-function
-const exec = isElectron ? require('child_process').exec : () => {}
-
   async function handleChangeFile(e: React.ChangeEvent<HTMLInputElement>) {
     const selectedFile = e.target.files?.item(0)
     if (!selectedFile) {
@@ -94,7 +90,7 @@ const exec = isElectron ? require('child_process').exec : () => {}
         parseSequences: true,
         parseComments: false,
         parseDirectives: false,
-        parseFeatures: true,
+        parseFeatures: isElectron ? false : true,
       })
     } catch (error) {
       setSubmitted(false)
@@ -152,10 +148,10 @@ const exec = isElectron ? require('child_process').exec : () => {}
           assemblyId,
           features: sequenceAdapterFeatures,
         },
-        metadata: { apollo: true, file: file.name },
+        metadata: { apollo: true, file: isElectron ? file.name : undefined },
       },
     }
-    console.log(`Filename: ${file.name}`)
+    console.log(`Filename: "${file.name}"`)
 
     // Save assembly into session
     await (addSessionAssembly || addAssembly)(assemblyConfig)
