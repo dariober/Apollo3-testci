@@ -187,7 +187,7 @@ export function OpenLocalFile({ session, handleClose }: OpenLocalFileProps) {
                   onChange={handleChangeFile}
                 />
               </Button>
-              {file ? file.name : 'No file chosen'}
+              {file ? file.name : 'No file chosen'} 
             </div>
             <FormHelperText>
               Make sure your GFF3 has an embedded FASTA section
