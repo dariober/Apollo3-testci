@@ -82,7 +82,6 @@ export class ApolloSequenceAdapter extends BaseSequenceAdapter {
     { refName, start, end }: NoAssemblyRegion,
     opts: BaseOptions,
   ) {
-    console.log('GET SEQ')
     return ObservableCreate<Feature>(async (observer) => {
       const refSeqs = await this.getRefSeqs(opts)
       const refSeq = refSeqs.find((rs) => rs.name === refName)
