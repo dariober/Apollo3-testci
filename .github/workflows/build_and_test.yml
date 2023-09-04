@@ -13,9 +13,12 @@ jobs:
         with:
           repository: GMOD/jbrowse-components
           path: jbrowse
-          ref: main
       - run: |
+          pwd
+          ls
           cd jbrowse
+          pwd 
+          ls
           yarn install
           yarn --cwd products/jbrowse-web start 
 
