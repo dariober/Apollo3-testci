@@ -6,14 +6,16 @@ jobs:
     name: Test Apollo
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v3
+
+      - name: Install JB
+        uses: actions/setup-node@v3
       - run: |
           cd ../
           git clone https://github.com/GMOD/jbrowse-components
           cd jbrowse-components
           yarn install
-          yarn --cwd products/jbrowse-web start 
-
-      - uses: actions/checkout@v3
+          yarn --cwd products/jbrowse-web start &
 
       - name: Install Apollo
         uses: actions/setup-node@v3
