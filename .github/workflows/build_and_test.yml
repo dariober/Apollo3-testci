@@ -13,3 +13,12 @@ jobs:
         with:
           node-version: 18.x
       - run: yarn install
+
+      - name: Install jbrowse
+        uses: actions/setup-node@v3
+        with:
+          repository: GMOD/jbrowse-components
+          path: jbrowse
+      - run: ls; yarn install
+      - run: ls; yarn --cwd products/jbrowse-web start 
+
