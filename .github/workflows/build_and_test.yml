@@ -8,17 +8,21 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
+      - name: Install jbrowse
+        uses: actions/checkout@v3
+        with:
+          repository: GMOD/jbrowse-components
+          path: jbrowseS
+          ref: main
+      - run: cd jbrowse; ls
+      - run: yarn install
+      - run: yarn products/jbrowse-web start 
+      - run: cd ../
+
       - name: Install Apollo
         uses: actions/setup-node@v3
         with:
           node-version: 18.x
       - run: yarn install
 
-      - name: Install jbrowse
-        uses: actions/checkout@main
-        with:
-          repository: GMOD/jbrowse-components
-          path: jbrowse
-      - run: ls; yarn --cwd jbrowse/products/jbrowse-web install
-      - run: ls; yarn --cwd jbrowse/products/jbrowse-web start 
 
