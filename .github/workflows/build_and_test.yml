@@ -10,7 +10,6 @@ jobs:
 
       - name: Install Apollo
         uses: actions/setup-node@v3
-        uses: actions/checkout@v3
         with:
           node-version: 18.x
       - run: yarn install
