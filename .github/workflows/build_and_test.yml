@@ -6,27 +6,21 @@ jobs:
     name: Test Apollo
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-
-      - name: Install jbrowse
-        uses: actions/checkout@v3
-        with:
-          repository: GMOD/jbrowse-components
-          path: jbrowse
       - run: |
-          pwd
-          ls
-          cd jbrowse
-          pwd 
-          ls
-          YARN_ENABLE_IMMUTABLE_INSTALLS=false
+          cd ../
+          git clone https://github.com/GMOD/jbrowse-components
+          cd jbrowse-components
           yarn install
           yarn --cwd products/jbrowse-web start 
+
+      - uses: actions/checkout@v3
 
       - name: Install Apollo
         uses: actions/setup-node@v3
         with:
           node-version: 18.x
-      - run: yarn install
+      - run: |
+          pwd
+          yarn install
 
 
