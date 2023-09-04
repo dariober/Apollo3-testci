@@ -41,7 +41,7 @@ describe('Different ways of editing features', () => {
     // cy.contains('Restore track').click()
 
     cy.get('[data-testid="overlayCanvas"]').then((canvas) => {
-      cy.wrap(canvas).trigger('mouseover', 700, 10) //  .rightclick()
+      cy.wrap(canvas).trigger('mouseover', 700, 10) // .rightclick()
     })
     // cy.get('[class="css-17gfnt3-verticalGuidesContainer"]').children().eq(0).trigger('mousedown', 200, 30)
     // cy.get('[class="css-17gfnt3-verticalGuidesContainer"]').children().eq(0).trigger('mousemove', 900, 30)
