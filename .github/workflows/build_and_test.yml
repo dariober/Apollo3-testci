@@ -8,12 +8,13 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - name: Install JB
+      - name: Install and start jbrowse
         uses: actions/setup-node@v3
       - run: |
           cd ../
           git clone https://github.com/GMOD/jbrowse-components
           cd jbrowse-components
+          pwd
           yarn install
           yarn --cwd products/jbrowse-web start &
 
@@ -24,5 +25,15 @@ jobs:
       - run: |
           pwd
           yarn install
+
+      - name: Start Apollo
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18.x
+      - run: |
+          pwd
+          yarn --cwd packages/apollo-shared start &
+          yarn --cwd packages/apollo-collaboration-server run cypress:start &
+          yarn --cwd packages/jbrowse-plugin-apollo start
 
 
