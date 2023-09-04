@@ -15,7 +15,7 @@ jobs:
       - run: yarn install
 
       - name: Install jbrowse
-        uses: actions/setup-node@v3
+        uses: actions/checkout@v3
         with:
           repository: GMOD/jbrowse-components
           path: jbrowse
