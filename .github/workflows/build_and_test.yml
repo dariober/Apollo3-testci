@@ -15,10 +15,10 @@ jobs:
       - run: yarn install
 
       - name: Install jbrowse
-        uses: actions/checkout@v3
+        uses: actions/checkout@main
         with:
           repository: GMOD/jbrowse-components
           path: jbrowse
-      - run: ls; yarn install
-      - run: ls; yarn --cwd products/jbrowse-web start 
+      - run: ls; yarn --cwd jbrowse/products/jbrowse-web install
+      - run: ls; yarn --cwd jbrowse/products/jbrowse-web start 
 
