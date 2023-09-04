@@ -15,9 +15,9 @@ jobs:
           path: jbrowse
           ref: main
       - run: |
-          cd jbrowse \
-          yarn install \
-          yarn products/jbrowse-web start 
+          cd jbrowse
+          yarn install
+          yarn --cwd products/jbrowse-web start 
 
       - name: Install Apollo
         uses: actions/setup-node@v3
