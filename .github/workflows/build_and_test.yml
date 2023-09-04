@@ -15,10 +15,10 @@ jobs:
     - uses: actions/checkout@v3
 
     - name: Build jbrowse
-        uses: actions/checkout@master
-        with:
-          repository: GMOD/jbrowse-components
-        run: yarn --cwd products/jbrowse-web start 
+      uses: actions/checkout@master
+      with:
+        repository: GMOD/jbrowse-components
+    - run: yarn --cwd products/jbrowse-web start 
 
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v3
