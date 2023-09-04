@@ -12,9 +12,11 @@ jobs:
         uses: actions/checkout@v3
         with:
           repository: GMOD/jbrowse-components
-          path: jbrowseS
+          path: jbrowse
           ref: main
-      - run: cd jbrowse; ls
+      - run: ls 
+      - run: cd jbrowse
+      - run: ls
       - run: yarn install
       - run: yarn products/jbrowse-web start 
       - run: cd ../
