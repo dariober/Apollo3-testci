@@ -41,7 +41,7 @@ describe('Different ways of editing features', () => {
     // cy.contains('Restore track').click()
 
     cy.get('[data-testid="overlayCanvas"]').then((canvas) => {
-      cy.wrap(canvas).trigger('mouseover', 700, 10).rightclick()
+      cy.wrap(canvas).trigger('mouseover', 700, 10) // .rightclick()
     })
     // cy.get('[class="css-17gfnt3-verticalGuidesContainer"]').children().eq(0).trigger('mousedown', 200, 30)
     // cy.get('[class="css-17gfnt3-verticalGuidesContainer"]').children().eq(0).trigger('mousemove', 900, 30)
@@ -51,9 +51,9 @@ describe('Different ways of editing features', () => {
     // cy.get('[data-testid="trackContainer"]').children().eq(0).children().trigger('mousemove', 900, 30, { force: true })
     // cy.get('[data-testid="trackContainer"]').children().eq(0).children().trigger('mouseup', 900, 30, { force: true })
     // .parent().parent().trigger('mouseover')
-    //cy.get('[data-testid="canvas"]').parent().parent().trigger('mousedown', 580, 30)
-    //cy.get('[data-testid="canvas"]').parent().parent().trigger('mousemove', 200, 30)
-    //cy.get('[data-testid="canvas"]').parent().parent().trigger('mouseup', 200, 30)
+    // cy.get('[data-testid="canvas"]').parent().parent().trigger('mousedown', 580, 30)
+    // cy.get('[data-testid="canvas"]').parent().parent().trigger('mousemove', 200, 30)
+    // cy.get('[data-testid="canvas"]').parent().parent().trigger('mouseup', 200, 30)
   })
 
   it('Can edit feature via table editor', () => {
