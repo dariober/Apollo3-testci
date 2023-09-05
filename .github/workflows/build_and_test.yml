@@ -7,10 +7,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
 
       - name: Install and start jbrowse
-        uses: actions/setup-node@v3
-      - run: |
+        run: |
           cd ../
           git clone https://github.com/GMOD/jbrowse-components
           cd jbrowse-components
@@ -18,14 +18,13 @@ jobs:
           yarn install
           yarn --cwd products/jbrowse-web start &
 
-      - name: Start container
-        run: docker compose -f docker-compose.yml up -d
+          #- name: Start container
+          #run: docker compose -f docker-compose.yml up -d
 
       - name: Install Apollo
-        uses: actions/setup-node@v3
         with:
           node-version: 18.x
-      - run: |
+        run: |
           pwd
           yarn install
           yarn --cwd packages/apollo-shared start &
