@@ -8,13 +8,15 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
+        with:
+          node-version: 18.x
 
       - name: Install and start jbrowse
         run: |
           cd ../
           git clone https://github.com/GMOD/jbrowse-components
           cd jbrowse-components
-          pwd
+          pwd; ls
           yarn install
           yarn --cwd products/jbrowse-web start &
 
@@ -22,10 +24,8 @@ jobs:
           #run: docker compose -f docker-compose.yml up -d
 
       - name: Install Apollo
-        with:
-          node-version: 18.x
         run: |
-          pwd
+          pwd; ls
           yarn install
           yarn --cwd packages/apollo-shared start &
           yarn --cwd packages/apollo-collaboration-server run cypress:start &
