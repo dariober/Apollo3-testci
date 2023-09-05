@@ -10,35 +10,31 @@ jobs:
         with:
           node-version: 18.x
 
-      - name: Get jbrowse
+      - name: Download jbrowse
         uses: actions/checkout@v3
         with:
             repository: GMOD/jbrowse-components
-            path: jbrowse
+            path: jbrowse-components
       
-      - name: Get apollo
+      - name: Download apollo
         uses: actions/checkout@v3
         with:
-            path: apollo
+            path: Apollo3
 
-      - name: Install jbrowse 
+      - name: Install and start jbrowse 
         run: |
-          ls ../
+          cd jbrowse-components
           pwd; ls
-          cd jbrowse
-          ls
           yarn install
           yarn --cwd products/jbrowse-web start &
 
           #- name: Start container
           #run: docker compose -f docker-compose.yml up -d
 
-      - name: Install Apollo
+      - name: Install and start Apollo
         run: |
-          ls ../
+          cd Apollo3
           pwd; ls
-          cd apollo
-          ls
           yarn install
           yarn --cwd packages/apollo-shared start &
           yarn --cwd packages/apollo-collaboration-server run cypress:start &
