@@ -25,7 +25,8 @@ jobs:
         run: |
           ls ../
           pwd; ls
-          cd jbrowse/jbrowse-components
+          cd jbrowse
+          ls
           yarn install
           yarn --cwd products/jbrowse-web start &
 
@@ -36,6 +37,8 @@ jobs:
         run: |
           ls ../
           pwd; ls
+          cd apollo
+          ls
           yarn install
           yarn --cwd packages/apollo-shared start &
           yarn --cwd packages/apollo-collaboration-server run cypress:start &
