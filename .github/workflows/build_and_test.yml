@@ -18,6 +18,9 @@ jobs:
           yarn install
           yarn --cwd products/jbrowse-web start &
 
+      - name: Start container
+        run: docker compose -f docker-compose.yml up -d
+
       - name: Install Apollo
         uses: actions/setup-node@v3
         with:
