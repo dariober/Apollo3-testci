@@ -10,16 +10,22 @@ jobs:
         with:
           node-version: 18.x
 
-      - name: Install and start jbrowse
+      - name: Get jbrowse
         uses: actions/checkout@v3
         with:
             repository: GMOD/jbrowse-components
             path: jbrowse
-      - run: |
-          #cd ../
-          #git clone https://github.com/GMOD/jbrowse-components
-          #cd jbrowse-components
+      
+      - name: Get apollo
+        uses: actions/checkout@v3
+        with:
+            path: apollo
+
+      - name: Install jbrowse 
+        run: |
+          ls ../
           pwd; ls
+          cd jbrowse/jbrowse-components
           yarn install
           yarn --cwd products/jbrowse-web start &
 
@@ -27,10 +33,7 @@ jobs:
           #run: docker compose -f docker-compose.yml up -d
 
       - name: Install Apollo
-        uses: actions/checkout@v3
-        with:
-            path: apollo
-      - run: |
+        run: |
           ls ../
           pwd; ls
           yarn install
