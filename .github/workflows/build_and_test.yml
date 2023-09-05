@@ -27,9 +27,24 @@ jobs:
           pwd; ls
           yarn install
           yarn --cwd products/jbrowse-web start &
+          for i in {1..6}
+          do
+            echo "Waiting for jbrowse to start"
+            sleep 10
+            set +e
+            nc -z localhost 3000
+            exit_code=$?
+            set -e {0}
+            if [ "$exit_code" -eq 0 ]
+            then
+              break
+            fi
+          done
+          echo "Failed to start jbrowse"
+          exit 1
 
-          #- name: Start container
-          #run: docker compose -f docker-compose.yml up -d
+      - name: Start container
+        run: docker compose -f docker-compose.yml up -d
 
       - name: Install and start Apollo
         run: |
