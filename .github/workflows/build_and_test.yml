@@ -17,6 +17,7 @@ jobs:
         run: yarn --immutable
 
       - name: Get latest JBrowse
+        working-directory: packages/jbrowse-plugin-apollo
         run: yarn run jbrowse create --nightly .jbrowse
 
       - name: Start MongoDB
@@ -26,6 +27,7 @@ jobs:
           mongodb-replica-set: test-rs
 
       - name: Test plugin
+        working-directory: packages/jbrowse-plugin-apollo
         run: yarn run test:e2e
 
         #
