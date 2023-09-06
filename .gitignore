@@ -123,3 +123,6 @@ packages/apollo-collaboration-server/test/uploaded
 
 # Vim
 *.swp
+
+# For testing
+/config
