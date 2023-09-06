@@ -12,6 +12,7 @@ jobs:
           run: |
             mkdir config
             sed 's|http://example.com|http://localhost|g;
+                 s|MONGODB_URI=mongodb://mongodb:27017/apolloDb|MONGODB_URI=mongodb://127.0.0.1:27017/apolloDb|g; 
                  s|#* *GUEST_USER_ROLE=readOnly|GUEST_USER_ROLE=admin|g;
                  s|#* *ALLOW_GUEST_USER=.*|ALLOW_GUEST_USER=true|g' docs/apollo.env > config/apollo.env
             sed 's|http://example.com|http://localhost|g' docs/config.json > config/config.json
