@@ -6,38 +6,28 @@ jobs:
     name: Test Apollo
     runs-on: ubuntu-latest
     steps:
-        - uses: actions/checkout@v3
+      - uses: actions/checkout@v3
+      - name: Use Node.js 18.x
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+          cache: yarn
 
-        - name: Prepare configs
-          run: |
-            mkdir config
-            sed 's|http://example.com|http://localhost|g;
-                 s|MONGODB_URI=mongodb://mongodb:27017/apolloDb|MONGODB_URI=mongodb://127.0.0.1:27017/apolloDb|g; 
-                 s|#* *GUEST_USER_ROLE=readOnly|GUEST_USER_ROLE=admin|g;
-                 s|#* *ALLOW_GUEST_USER=.*|ALLOW_GUEST_USER=true|g' docs/apollo.env > config/apollo.env
-            sed 's|http://example.com|http://localhost|g' docs/config.json > config/config.json
-            cp docs/docker-compose.yml config/docker-compose.yml
+      - name: Install
+        run: yarn --immutable
 
-        - name: Start Apollo
-          run: |
-            cd config
-            docker compose up
-            docker compose cp ./config.json jbrowse-web:/usr/local/apache2/htdocs/
+      - name: Get latest JBrowse
+        run: yarn run jbrowse create --nightly .jbrowse
 
-        #      - uses: actions/setup-node@v3
-        #        with:
-        #          node-version: 18.x
-        #
-        #      - name: Download jbrowse
-        #        uses: actions/checkout@v3
-        #        with:
-        #            repository: GMOD/jbrowse-components
-        #            path: jbrowse-components
-        #      
-        #      - name: Download apollo
-        #        uses: actions/checkout@v3
-        #        with:
-        #            path: Apollo3
+      - name: Start MongoDB
+        uses: supercharge/mongodb-github-action@1.10.0
+        with:
+          mongodb-version: 7
+          mongodb-replica-set: test-rs
+
+      - name: Test plugin
+        run: yarn run test:e2e
+
         #
         #      - name: Install jbrowse 
         #        run: |
