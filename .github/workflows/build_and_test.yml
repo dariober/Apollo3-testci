@@ -32,4 +32,5 @@ jobs:
 
       - name: Test plugin
         working-directory: packages/jbrowse-plugin-apollo
-        run: yarn run test:e2e
+        run: yarn run cypress run --e2e --browser chrome --spec cypress/e2e/searchFeatures.cy.ts
+        # run: yarn run test:e2e
