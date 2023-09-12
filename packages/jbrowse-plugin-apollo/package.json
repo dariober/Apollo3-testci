@@ -36,7 +36,7 @@
     "build": "yarn build:shared && yarn clean && rollup --config",
     "browse": "serve --listen 8999 .jbrowse",
     "test": "jest",
-    "test:e2e": "export GUEST_USER_ROLE=admin && export MONGODB_URI=mongodb://localhost:27017/apolloTestDb && yarn build && start-test \"npm-run-all --parallel start:server browse\" \"9000|8999\" \"npm-run-all cypress:run\"",
+    "test:e2e": "yarn build && start-test \"npm-run-all --parallel start:server browse\" \"9000|8999\" \"npm-run-all cypress:run\"",
     "cypress:run": "cypress run --browser chrome --config baseUrl=http://localhost:8999",
     "cypress:open": "cypress open --config baseUrl=http://localhost:3000",
     "prepublish": "yarn test",
