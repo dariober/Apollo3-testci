@@ -1,0 +1,73 @@
+name: CI
+on: [push]
+
+jobs:
+  build:
+    name: Test Apollo
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Use Node.js 18.x
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+          cache: yarn
+
+      - name: Install
+        run: yarn --immutable
+
+      - name: Get latest JBrowse
+        working-directory: packages/jbrowse-plugin-apollo
+        run: yarn run jbrowse create --nightly .jbrowse
+
+      - name: Start MongoDB
+        uses: supercharge/mongodb-github-action@1.10.0
+        with:
+          mongodb-version: 7
+          mongodb-replica-set: test-rs
+
+      - name: Test plugin
+        working-directory: packages/jbrowse-plugin-apollo
+        run: yarn run test:e2e
+
+        #
+        #      - name: Install jbrowse 
+        #        run: |
+        #          cd jbrowse-components
+        #          yarn install
+        #
+        #      - name: Start jbrowse
+        #        run: |
+        #          cd jbrowse-components
+        #          yarn --cwd products/jbrowse-web start 2> err.log > out.log &
+        #          for i in {1..20}
+        #          do
+        #            echo "Waiting for jbrowse to start"
+        #            sleep 10
+        #            set +e
+        #            grep 'No issues found' out.log
+        #            exit_code=$?
+        #            set -e {0}
+        #            if [ "$exit_code" -eq 0 ]
+        #            then
+        #              echo "Jbrowse started"
+        #              exit 0
+        #            fi
+        #          done
+        #          cat out.log err.log
+        #          echo "Failed to start jbrowse"
+        #          exit 1
+        #
+        #      - name: Start container
+        #        run: |
+        #          cd Apollo3
+        #          docker compose -f docker-compose.yml up -d
+        #
+        #      - name: Install and start Apollo
+        #        run: |
+        #          cd Apollo3
+        #          pwd; ls
+        #          yarn install
+        #          yarn --cwd packages/apollo-shared start &
+        #          yarn --cwd packages/apollo-collaboration-server run cypress:start &
+        #          yarn --cwd packages/jbrowse-plugin-apollo start
