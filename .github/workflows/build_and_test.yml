@@ -32,4 +32,7 @@ jobs:
 
       - name: Test plugin
         working-directory: packages/jbrowse-plugin-apollo
+        env:
+          GUEST_USER_ROLE: admin
+          MONGODB_URI: mongodb://localhost:27017/apolloTestDb
         run: yarn run test:e2e
