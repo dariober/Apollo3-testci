@@ -38,6 +38,7 @@ jobs:
         run: yarn run test:e2e
 
       - name: Archive test results
+        if: '!cancelled()'
         uses: actions/upload-artifact@v3
         with:
           name: cypress_results
