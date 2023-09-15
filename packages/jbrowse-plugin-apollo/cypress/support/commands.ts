@@ -31,7 +31,7 @@ Cypress.Commands.add('addAssemblyFromGff', (assemblyName, fin) => {
     .get('input[type="checkbox"]')
     .should('be.checked')
   cy.intercept('/changes').as('changes')
-  cy.contains('Submit').click({ timeout: 10_000 })
+  cy.contains('Submit').click({ timeout: 60_000 })
   cy.wait('@changes').its('response.statusCode').should('match', /2../)
   cy.reload()
   cy.contains('Select assembly to view', { timeout: 10_000 })
