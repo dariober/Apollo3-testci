@@ -36,3 +36,9 @@ jobs:
           GUEST_USER_ROLE: admin
           MONGODB_URI: mongodb://localhost:27017/apolloTestDb
         run: yarn run test:e2e
+
+      - name: Archive test results
+        uses: actions/upload-artifact@v3
+        with:
+          name: cypress_results
+          path: packages/jbrowse-plugin-apollo/cypress
