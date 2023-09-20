@@ -4,7 +4,7 @@ const { defineConfig } = require('cypress')
 const { configurePlugin } = require('cypress-mongodb')
 
 module.exports = defineConfig({
-  videoCompression: false
+  videoCompression: false,
   env: {
     mongodb: {
       uri: 'mongodb://localhost:27017/?directConnection=true',
