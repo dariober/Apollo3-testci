@@ -1,6 +1,6 @@
 {
   "name": "@apollo-annotation/apollo-mst",
-  "version": "0.1.5-devel-foo-bar13",
+  "version": "0.1.4",
   "main": "./dist/index.js",
   "scripts": {
     "build": "tsc"
@@ -17,6 +17,5 @@
   },
   "publishConfig": {
     "access": "public"
-  },
-  "stableVersion": "0.1.5"
+  }
 }
