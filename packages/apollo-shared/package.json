@@ -1,6 +1,6 @@
 {
   "name": "@apollo-annotation/apollo-shared",
-  "version": "0.1.5",
+  "version": "0.1.5-devel",
   "main": "./dist/index.js",
   "scripts": {
     "start": "tsc --build --watch",
@@ -45,5 +45,6 @@
   },
   "publishConfig": {
     "access": "public"
-  }
+  },
+  "stableVersion": "0.1.5"
 }

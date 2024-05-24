@@ -1,6 +1,6 @@
 {
   "name": "@apollo-annotation/apollo-schemas",
-  "version": "0.1.5",
+  "version": "0.1.5-devel",
   "main": "./dist/index.js",
   "scripts": {
     "build": "tsc"
@@ -22,5 +22,6 @@
   },
   "publishConfig": {
     "access": "public"
-  }
+  },
+  "stableVersion": "0.1.5"
 }

@@ -1,6 +1,6 @@
 {
   "name": "@apollo-annotation/jbrowse-plugin-apollo",
-  "version": "0.1.5",
+  "version": "0.1.5-devel",
   "description": "Apollo plugin for JBrowse 2",
   "repository": {
     "type": "git",
@@ -125,5 +125,6 @@
   },
   "publishConfig": {
     "access": "public"
-  }
+  },
+  "stableVersion": "0.1.5"
 }
