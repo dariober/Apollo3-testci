@@ -1,6 +1,6 @@
 {
   "name": "@apollo-annotation/apollo-schemas",
-  "version": "0.1.5-devel-foo-bar6",
+  "version": "0.1.5-devel-foo-bar7",
   "main": "./dist/index.js",
   "scripts": {
     "build": "tsc"
